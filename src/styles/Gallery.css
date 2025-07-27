@@ -1,6 +1,6 @@
 .gallery {
   padding: 5rem 0;
-  background: #d6d2c0; /* Ivory background */
+  background: #d6d2c0;
 }
 
 .container {
@@ -15,7 +15,7 @@
 }
 
 .section-title {
-  color: #020301 !important; /* Black text for contrast */
+  color: #020301 !important;
   font-size: 2.5rem;
   font-weight: 700;
   text-align: center;
@@ -25,7 +25,7 @@
 }
 
 .section-subtitle {
-  color: #6b6b6b !important; /* Gray text for contrast */
+  color: #6b6b6b !important;
   font-size: 1.1rem;
   text-align: center;
   max-width: 600px;
@@ -79,20 +79,20 @@
 .gallery-title {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #020301 !important; /* Black text for contrast */
+  color: #020301 !important;
   margin-bottom: 1rem;
 }
 
 .gallery-description {
-  color: #6b6b6b !important; /* Gray text for contrast */
+  color: #6b6b6b !important;
   line-height: 1.6;
   margin-bottom: 1.5rem;
 }
 
 .gallery-btn {
   background: transparent;
-  color: #020301 !important; /* Black text for contrast */
-  border: 2px solid #020301 !important; /* Black border */
+  color: #020301 !important;
+  border: 2px solid #020301 !important;
   padding: 0.75rem 1.5rem;
   border-radius: 25px;
   font-weight: 600;
@@ -103,14 +103,14 @@
 }
 
 .gallery-btn:hover {
-  background: #020301 !important; /* Black background on hover */
-  color: #d6d2c0 !important; /* Ivory text on hover */
+  background: #020301 !important;
+  color: #d6d2c0 !important;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .gallery-content .gallery-item-title {
-  color: #020301 !important; /* Black text for contrast */
+  color: #020301 !important;
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
@@ -118,8 +118,8 @@
 
 .gallery-view-btn {
   background: transparent;
-  color: #020301 !important; /* Black text */
-  border: 2px solid #020301 !important; /* Black border */
+  color: #020301 !important;
+  border: 2px solid #020301 !important;
   padding: 0.75rem 1.5rem;
   border-radius: 25px;
   font-weight: 600;
@@ -130,16 +130,16 @@
 }
 
 .gallery-view-btn:hover {
-  background: #020301 !important; /* Black background on hover */
-  color: #d6d2c0 !important; /* Ivory text on hover */
+  background: #020301 !important;
+  color: #d6d2c0 !important;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .gallery-cta .btn-primary {
   background: transparent;
-  color: #020301 !important; /* Black text */
-  border: 2px solid #020301 !important; /* Black border */
+  color: #020301 !important;
+  border: 2px solid #020301 !important;
   padding: 1rem 2rem;
   border-radius: 25px;
   font-weight: 600;
@@ -150,8 +150,8 @@
 }
 
 .gallery-cta .btn-primary:hover {
-  background: #020301 !important; /* Black background on hover */
-  color: #d6d2c0 !important; /* Ivory text on hover */
+  background: #020301 !important;
+  color: #d6d2c0 !important;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
@@ -231,7 +231,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(2, 3, 1, 0.85); /* Darker overlay for better contrast */
+  background: rgba(2, 3, 1, 0.85);
   color: #ffffff;
   padding: 1.5rem;
   transform: translateY(100%);
@@ -247,19 +247,19 @@
 }
 
 .gallery-item-title {
-  color: #ffffff !important; /* White text for maximum contrast */
+  color: #ffffff !important;
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Text shadow for extra readability */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .gallery-item-description {
-  color: #d6d2c0 !important; /* Ivory text for good contrast */
+  color: #d6d2c0 !important;
   font-size: 0.9rem;
   margin-bottom: 1rem;
   line-height: 1.4;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5); /* Text shadow for extra readability */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* Responsive design */

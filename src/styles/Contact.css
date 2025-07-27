@@ -1,6 +1,6 @@
 .contact {
   padding: 5rem 0;
-  background: #c6c5bf; /* Pewter background */
+  background: #c6c5bf;
 }
 
 .container {
@@ -15,7 +15,7 @@
 }
 
 .section-title {
-  color: #020301 !important; /* Black text for contrast */
+  color: #020301 !important;
   font-size: 2.5rem;
   font-weight: 700;
   text-align: center;
@@ -25,7 +25,7 @@
 }
 
 .section-subtitle {
-  color: #6b6b6b !important; /* Gray text for contrast */
+  color: #6b6b6b !important;
   font-size: 1.1rem;
   text-align: center;
   max-width: 600px;
@@ -82,27 +82,27 @@
 }
 
 .contact-details h3 {
-  color: #020301 !important; /* Black text for contrast */
+  color: #020301 !important;
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 0.2rem;
 }
 
 .contact-details p {
-  color: #6b6b6b !important; /* Gray text for contrast */
+  color: #6b6b6b !important;
   line-height: 1.3;
   font-size: 0.9rem;
 }
 
 .contact-info h3 {
-  color: #020301 !important; /* Black text for contrast */
+  color: #020301 !important;
   font-size: 1.3rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
 .contact-info p {
-  color: #6b6b6b !important; /* Gray text for contrast */
+  color: #6b6b6b !important;
   line-height: 1.6;
 }
 
@@ -170,9 +170,9 @@
 
 .contact-form input,
 .contact-form textarea {
-  background: #ffffff !important; /* White background */
-  border: 1px solid #6b6b6b !important; /* Gray border */
-  color: #020301 !important; /* Black text */
+  background: #ffffff !important;
+  border: 1px solid #6b6b6b !important;
+  color: #020301 !important;
   padding: 1rem;
   border-radius: 8px;
   font-size: 1rem;
@@ -182,19 +182,19 @@
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
-  border-color: #020301 !important; /* Black border on focus */
+  border-color: #020301 !important;
   box-shadow: 0 0 0 2px rgba(2, 3, 1, 0.1);
 }
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-  color: #6b6b6b !important; /* Gray placeholder text */
+  color: #6b6b6b !important;
 }
 
 .contact-form button {
   background: transparent;
-  color: #020301 !important; /* Black text */
-  border: 2px solid #020301 !important; /* Black border */
+  color: #020301 !important;
+  border: 2px solid #020301 !important;
   padding: 1rem 2rem;
   border-radius: 25px;
   font-weight: 600;
@@ -205,8 +205,8 @@
 }
 
 .contact-form button:hover {
-  background: #020301 !important; /* Black background on hover */
-  color: #c6c5bf !important; /* Pewter text on hover */
+  background: #020301 !important;
+  color: #c6c5bf !important;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }

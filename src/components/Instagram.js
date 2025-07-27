@@ -1,112 +1,90 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import '../styles/Instagram.css';
 
 const Instagram = () => {
-  const [instagramPosts, setInstagramPosts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Instagram API Configuration
-  const INSTAGRAM_ACCESS_TOKEN = process.env.REACT_APP_INSTAGRAM_ACCESS_TOKEN;
-  const INSTAGRAM_USER_ID = process.env.REACT_APP_INSTAGRAM_USER_ID;
-
-  const fetchInstagramPosts = async () => {
+  const fetchInstagramPosts = useCallback(async () => {
     try {
-      setIsLoading(true);
+      setLoading(true);
+      setError(null);
+
+      // Instagram Basic Display API
+      const ACCESS_TOKEN = process.env.REACT_APP_INSTAGRAM_ACCESS_TOKEN;
       
-      // Instagram Basic Display API endpoint
+      if (!ACCESS_TOKEN) {
+        throw new Error('Instagram access token not configured');
+      }
+
       const response = await fetch(
-        `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink,timestamp&access_token=${INSTAGRAM_ACCESS_TOKEN}&limit=6`
+        `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink,timestamp&access_token=${ACCESS_TOKEN}&limit=6`
       );
-      
+
       if (!response.ok) {
         throw new Error('Failed to fetch Instagram posts');
       }
-      
+
       const data = await response.json();
-      
-      // Transform Instagram data to our format
-      const posts = data.data.map(post => ({
-        id: post.id,
-        image: post.media_type === 'VIDEO' ? post.thumbnail_url : post.media_url,
-        caption: post.caption ? post.caption.split('\n')[0] : 'Check out our latest work! 🌿',
-        likes: 0, // Instagram API doesn't provide likes count in Basic Display
-        comments: 0, // Instagram API doesn't provide comments count in Basic Display
-        link: post.permalink,
-        timestamp: post.timestamp
-      }));
-      
-      setInstagramPosts(posts);
-      setError(null);
+      setPosts(data.data || []);
     } catch (err) {
-      console.error('Error fetching Instagram posts:', err);
+      console.error('Instagram API error:', err);
       setError('Unable to load Instagram posts');
+      
       // Fallback to placeholder posts
-      setInstagramPosts([
+      setPosts([
         {
-          id: 'fallback1',
-          image: 'https://via.placeholder.com/300x300/2d5016/ffffff?text=Instagram+Post+1',
-          caption: 'Beautiful landscape transformation in progress! 🌿✨',
-          likes: 42,
-          comments: 8,
-          link: 'https://instagram.com/fluorescentlandscapes'
+          id: '1',
+          media_url: 'https://via.placeholder.com/300x300/4a7c59/ffffff?text=Landscape+Design',
+          caption: 'Beautiful landscape design project completed! 🌿 #landscaping #design',
+          permalink: '#'
         },
         {
-          id: 'fallback2',
-          image: 'https://via.placeholder.com/300x300/4a7c59/ffffff?text=Instagram+Post+2',
-          caption: 'Before and after - this garden makeover is stunning! 🌱',
-          likes: 67,
-          comments: 12,
-          link: 'https://instagram.com/fluorescentlandscapes'
+          id: '2',
+          media_url: 'https://via.placeholder.com/300x300/2d5016/ffffff?text=Garden+Installation',
+          caption: 'New garden installation in progress! 🌱 #garden #installation',
+          permalink: '#'
         },
         {
-          id: 'fallback3',
-          image: 'https://via.placeholder.com/300x300/2d5016/ffffff?text=Instagram+Post+3',
-          caption: 'New patio installation complete! Perfect for outdoor entertaining 🏡',
-          likes: 89,
-          comments: 15,
-          link: 'https://instagram.com/fluorescentlandscapes'
+          id: '3',
+          media_url: 'https://via.placeholder.com/300x300/4a7c59/ffffff?text=Patio+Design',
+          caption: 'Custom patio design with premium materials! 🏡 #patio #design',
+          permalink: '#'
         },
         {
-          id: 'fallback4',
-          image: 'https://via.placeholder.com/300x300/4a7c59/ffffff?text=Instagram+Post+4',
-          caption: 'Spring maintenance in full swing! 🌸',
-          likes: 34,
-          comments: 6,
-          link: 'https://instagram.com/fluorescentlandscapes'
+          id: '4',
+          media_url: 'https://via.placeholder.com/300x300/2d5016/ffffff?text=Water+Features',
+          caption: 'Elegant water feature installation! 💧 #waterfeature #landscaping',
+          permalink: '#'
         },
         {
-          id: 'fallback5',
-          image: 'https://via.placeholder.com/300x300/2d5016/ffffff?text=Instagram+Post+5',
-          caption: 'Custom water feature installation - the sound is so relaxing! 💧',
-          likes: 156,
-          comments: 23,
-          link: 'https://instagram.com/fluorescentlandscapes'
+          id: '5',
+          media_url: 'https://via.placeholder.com/300x300/4a7c59/ffffff?text=Outdoor+Lighting',
+          caption: 'Professional outdoor lighting setup! ✨ #lighting #outdoor',
+          permalink: '#'
         },
         {
-          id: 'fallback6',
-          image: 'https://via.placeholder.com/300x300/4a7c59/ffffff?text=Instagram+Post+6',
-          caption: 'Hardscaping project complete! Stone work that lasts generations 🏗️',
-          likes: 78,
-          comments: 11,
-          link: 'https://instagram.com/fluorescentlandscapes'
+          id: '6',
+          media_url: 'https://via.placeholder.com/300x300/2d5016/ffffff?text=Maintenance',
+          caption: 'Regular maintenance keeps your landscape beautiful! 🌿 #maintenance #care',
+          permalink: '#'
         }
       ]);
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchInstagramPosts();
     
     // Refresh posts every 12 hours
     const interval = setInterval(fetchInstagramPosts, 12 * 60 * 60 * 1000);
-    
     return () => clearInterval(interval);
-  }, []);
+  }, [fetchInstagramPosts]);
 
-  if (isLoading) {
+  if (loading) {
     return (
       <section id="instagram" className="instagram">
         <div className="container">
@@ -142,26 +120,26 @@ const Instagram = () => {
         
         {/* Professional Instagram Grid */}
         <div className="instagram-grid">
-          {instagramPosts.map((post) => (
+          {posts.map((post) => (
             <div key={post.id} className="instagram-post">
               <div className="post-image-container">
                 <img 
-                  src={post.image} 
+                  src={post.media_url} 
                   alt={post.caption} 
                   className="post-image"
                   loading="lazy"
                 />
                 <div className="post-overlay">
                   <div className="post-stats">
-                    <span className="stat">❤️ {post.likes}</span>
-                    <span className="stat">💬 {post.comments}</span>
+                    <span className="stat">❤️ 0</span>
+                    <span className="stat">💬 0</span>
                   </div>
                 </div>
               </div>
               <div className="post-content">
                 <p className="post-caption">{post.caption}</p>
                 <a 
-                  href={post.link} 
+                  href={post.permalink} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="post-link"
