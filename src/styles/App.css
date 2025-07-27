@@ -1,0 +1,186 @@
+/* Color Theme Variables */
+:root {
+  /* Primary Colors */
+  --color-bistre: #020301 !important;
+  --color-sundance: #d6d2c0 !important;
+  --color-gurkha: #6b6b6b !important;
+  --color-lynch: #c6c5bf !important;
+  
+  /* Secondary Colors */
+  --color-sundance-dark: #c0bcac !important;
+  --color-bistre-light: #1a1a1a !important;
+  --color-white: #ffffff !important;
+  --color-light-gray: #f8f9fa !important;
+  --color-gray: #e0e0e0 !important;
+  --color-dark-gray: #999999 !important;
+  
+  /* Text Colors */
+  --text-primary: var(--color-bistre) !important;
+  --text-secondary: var(--color-gurkha) !important;
+  --text-light: var(--color-white) !important;
+  --text-muted: var(--color-dark-gray) !important;
+  
+  /* Background Colors */
+  --bg-primary: var(--color-white) !important;
+  --bg-secondary: var(--color-lynch) !important;
+  --bg-dark: var(--color-bistre) !important;
+  
+  /* Accent Colors */
+  --accent-primary: var(--color-sundance) !important;
+  --accent-secondary: var(--color-gurkha) !important;
+  --accent-hover: var(--color-sundance-dark) !important;
+  
+  /* Shadow Colors */
+  --shadow-light: rgba(0, 0, 0, 0.1) !important;
+  --shadow-medium: rgba(0, 0, 0, 0.15) !important;
+  --shadow-dark: rgba(0, 0, 0, 0.3) !important;
+  --shadow-accent: rgba(214, 210, 192, 0.4) !important;
+  --shadow-accent-hover: rgba(214, 210, 192, 0.6) !important;
+}
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text-primary);
+  overflow-x: hidden;
+  background-color: var(--bg-primary);
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  margin-top: 80px; /* Account for fixed header */
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Button styles */
+.btn {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-primary {
+  background: var(--accent-primary);
+  color: var(--text-primary);
+  box-shadow: 0 4px 15px var(--shadow-accent);
+  border: 2px solid var(--accent-primary);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--shadow-accent-hover);
+  background: var(--accent-hover);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--accent-primary);
+  border: 2px solid var(--accent-primary);
+}
+
+.btn-secondary:hover {
+  background: var(--accent-primary);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--shadow-accent-hover);
+}
+
+/* Container utility */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Section headers */
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Floating Weather Widget */
+.weather-container {
+  position: fixed !important;
+  top: 20px !important;
+  left: 20px !important;
+  z-index: 99999 !important;
+  animation: slideIn 0.5s ease-out;
+  max-width: 280px;
+  pointer-events: auto;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive weather positioning */
+@media (max-width: 768px) {
+  .weather-container {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    max-width: none;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  main {
+    margin-top: 70px;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+} 
