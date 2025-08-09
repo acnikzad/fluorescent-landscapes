@@ -1,70 +1,189 @@
-# Getting Started with Create React App
+# Fluorescent Landscapes - React Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive website for Fluorescent Landscapes, showcasing landscape design services, 3D visualization capabilities, and portfolio work.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+### Core Components
+- **Hero Section** - Eye-catching introduction with call-to-action
+- **Services** - Interactive flip cards showcasing landscaping services
+- **3D Visualization** - Interactive gallery of 3D landscape designs
+- **Video Showcase** - Video demonstration of design process
+- **Gallery** - Comprehensive portfolio with auto-rotating slideshow
+- **Instagram Integration** - Social media feed with fallback content
+- **Contact Form** - Professional contact section
+- **Weather Widget** - Floating weather information
+- **Responsive Design** - Mobile-first approach with modern UI/UX
 
-### `npm start`
+### Technical Features
+- React 18 with modern hooks
+- CSS Grid and Flexbox layouts
+- Responsive design for all devices
+- Interactive components with smooth animations
+- Modal galleries and image overlays
+- Instagram API integration (configurable)
+- Video playback with fallback handling
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🛠️ Installation & Setup
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn package manager
 
-### `npm test`
+### 1. Clone the Repository
+```bash
+git clone <repository-url>
+cd fluorescent-landscapes
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 2. Install Dependencies
+```bash
+npm install
+```
 
-### `npm run build`
+### 3. Environment Configuration
+Create a `.env` file in the root directory:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```env
+# Instagram Basic Display API (Optional)
+REACT_APP_INSTAGRAM_ACCESS_TOKEN=your_instagram_access_token_here
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 4. Start Development Server
+```bash
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The application will open at `http://localhost:3000`
 
-### `npm run eject`
+## 📱 Instagram Integration Setup
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 1. Facebook Developer Account
+- Go to [Facebook Developers](https://developers.facebook.com/)
+- Create a new app or use existing one
+- Add Instagram Basic Display product
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 2. Instagram Basic Display Setup
+- Configure OAuth redirect URIs
+- Add Instagram test users
+- Generate access token
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 3. Environment Variable
+Add your access token to `.env`:
+```env
+REACT_APP_INSTAGRAM_ACCESS_TOKEN=IGQWRP...
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 4. Fallback Content
+If Instagram API is unavailable, the component automatically displays placeholder content showcasing your services.
 
-## Learn More
+## 🎨 Customization
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Adding New Photos
+1. Place images in `src/photos/`
+2. Import in component: `import newImage from '../photos/newImage.jpg';`
+3. Add to component's image array
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Styling
+- Component-specific CSS files in `src/styles/`
+- Global styles in `src/App.css` and `src/index.css`
+- Responsive breakpoints: 1024px, 768px, 480px
 
-### Code Splitting
+### Component Structure
+Each component follows a consistent pattern:
+- Import statements and dependencies
+- State management with React hooks
+- JSX structure with semantic HTML
+- CSS classes for styling
+- Export default component
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📁 Project Structure
 
-### Analyzing the Bundle Size
+```
+src/
+├── components/          # React components
+│   ├── Header.js       # Navigation header
+│   ├── Hero.js         # Main hero section
+│   ├── Services.js     # Services showcase
+│   ├── 3DVisualization.js # 3D design gallery
+│   ├── VideoShowcase.js # Video demonstration
+│   ├── Gallery.js      # Portfolio gallery
+│   ├── Instagram.js    # Social media feed
+│   ├── Contact.js      # Contact form
+│   ├── Footer.js       # Site footer
+│   └── Weather.js      # Weather widget
+├── styles/             # Component-specific CSS
+├── photos/             # Image assets
+├── config/             # Configuration files
+└── App.js              # Main application component
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🚀 Deployment
 
-### Making a Progressive Web App
+### Build for Production
+```bash
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Deploy Options
+- **Netlify**: Drag and drop `build` folder
+- **Vercel**: Connect GitHub repository
+- **AWS S3**: Upload `build` folder to S3 bucket
+- **GitHub Pages**: Use `gh-pages` package
 
-### Advanced Configuration
+## 🔧 Available Scripts
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- `npm start` - Start development server
+- `npm run build` - Build for production
+- `npm test` - Run test suite
+- `npm run eject` - Eject from Create React App (irreversible)
 
-### Deployment
+## 📱 Responsive Design
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+The website is fully responsive with breakpoints:
+- **Desktop**: 1024px and above
+- **Tablet**: 768px - 1023px
+- **Mobile**: 480px - 767px
+- **Small Mobile**: Below 480px
 
-### `npm run build` fails to minify
+## 🎯 Future Enhancements
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Potential Improvements
+- [ ] Add blog/news section
+- [ ] Implement customer testimonials
+- [ ] Add online quote calculator
+- [ ] Integrate with CRM systems
+- [ ] Add multi-language support
+- [ ] Implement dark/light theme toggle
+- [ ] Add search functionality
+- [ ] Create admin dashboard
+
+### Performance Optimizations
+- [ ] Image lazy loading
+- [ ] Code splitting with React.lazy()
+- [ ] Service worker for offline support
+- [ ] Image optimization and WebP support
+- [ ] Bundle analysis and optimization
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## 📄 License
+
+This project is proprietary software for Fluorescent Landscapes.
+
+## 📞 Support
+
+For technical support or questions about this website:
+- Contact the development team
+- Check component documentation
+- Review React and CSS best practices
+
+---
+
+**Built with React and modern web technologies for Fluorescent Landscapes**

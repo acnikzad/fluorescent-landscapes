@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
+import ThreeDVisualization from './components/3DVisualization';
 import Gallery from './components/Gallery';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -22,6 +23,7 @@ function App() {
           <Hero />
           <Services />
           <Gallery />
+          <ThreeDVisualization />
           <Contact />
         </main>
         <Footer />

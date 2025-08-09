@@ -12,6 +12,21 @@ import galleryImage9 from '../photos/rs=w_2560,h_1920 (3).jpg';
 import galleryImage10 from '../photos/rs=w_1280,h_1707.jpg';
 import galleryImage11 from '../photos/rs=w_1280,h_1707 (1).jpg';
 import galleryImage12 from '../photos/rs=w_2560,h_1482.jpg';
+// New photos
+import galleryImage13 from '../photos/499560136_122099237882884636_4546722423210478753_n.jpg';
+import galleryImage14 from '../photos/499680481_122099635148884636_3296451225672780216_n.jpg';
+import galleryImage15 from '../photos/499683779_122099237870884636_8692745569202705912_n.jpg';
+import galleryImage16 from '../photos/500011031_122099635112884636_8924669894214385738_n.jpg';
+import galleryImage17 from '../photos/501654925_17856218907439506_7083263241326756339_n.jpg';
+import galleryImage18 from '../photos/502122012_17856218919439506_1215217046482179737_n.jpg';
+import galleryImage19 from '../photos/502990063_17856739350439506_6305109944901829138_n.jpg';
+import galleryImage20 from '../photos/505430994_17857931436439506_7807286689342193494_n.jpg';
+import galleryImage21 from '../photos/rs=w_1160,h_870.jpg';
+import galleryImage22 from '../photos/stairsFL.jpg';
+import galleryImage23 from '../photos/Lighting1.jpg';
+import galleryImage24 from '../photos/Lighting2.jpg';
+import galleryImage25 from '../photos/Lighting3.jpg';
+import galleryImage26 from '../photos/Lighting4.jpg';
 
 const Gallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -90,6 +105,90 @@ const Gallery = () => {
       image: galleryImage12,
       title: "Sustainable Landscaping",
       description: "Eco-friendly designs that conserve resources and support local ecosystems."
+    },
+    {
+      id: 13,
+      image: galleryImage13,
+      title: "Custom Patio Design",
+      description: "Beautiful outdoor living spaces designed for your lifestyle."
+    },
+    {
+      id: 14,
+      image: galleryImage14,
+      title: "Garden Transformation",
+      description: "Complete garden makeover with new plants and landscaping features."
+    },
+    {
+      id: 15,
+      image: galleryImage15,
+      title: "Landscape Maintenance",
+      description: "Professional care to keep your landscape looking pristine year-round."
+    },
+    {
+      id: 16,
+      image: galleryImage16,
+      title: "Outdoor Kitchen Design",
+      description: "Functional outdoor cooking and entertainment spaces."
+    },
+    {
+      id: 17,
+      image: galleryImage17,
+      title: "Pool & Landscape Integration",
+      description: "Seamless integration of water features with surrounding landscape."
+    },
+    {
+      id: 18,
+      image: galleryImage18,
+      title: "Modern Landscape Design",
+      description: "Contemporary outdoor spaces with clean architectural lines."
+    },
+    {
+      id: 19,
+      image: galleryImage19,
+      title: "Garden Renovation",
+      description: "Complete garden transformation with new design elements."
+    },
+    {
+      id: 20,
+      image: galleryImage20,
+      title: "Commercial Property Landscaping",
+      description: "Professional landscaping for business properties and commercial spaces."
+    },
+    {
+      id: 21,
+      image: galleryImage21,
+      title: "Custom Hardscaping",
+      description: "Premium stone and concrete work for lasting beauty."
+    },
+    {
+      id: 22,
+      image: galleryImage22,
+      title: "Staircase Landscaping",
+      description: "Beautiful and functional landscape stairs for challenging terrain."
+    },
+    {
+      id: 23,
+      image: galleryImage23,
+      title: "Landscape Lighting Design",
+      description: "Professional lighting to showcase your landscape day and night."
+    },
+    {
+      id: 24,
+      image: galleryImage24,
+      title: "Outdoor Lighting Installation",
+      description: "Strategic lighting placement for safety and ambiance."
+    },
+    {
+      id: 25,
+      image: galleryImage25,
+      title: "Garden Lighting",
+      description: "Subtle lighting to highlight garden features and pathways."
+    },
+    {
+      id: 26,
+      image: galleryImage26,
+      title: "Accent Lighting",
+      description: "Focused lighting to create dramatic landscape effects."
     }
   ];
 

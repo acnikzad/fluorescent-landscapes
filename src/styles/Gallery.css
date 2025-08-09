@@ -43,6 +43,7 @@
   flex-direction: column;
   gap: 2rem;
   align-items: center;
+  margin-bottom: 4rem;
 }
 
 /* Main Display */
@@ -478,5 +479,309 @@
   
   .modal-description {
     font-size: 0.9rem;
+  }
+}
+
+/* 3D Rendering Section Styles */
+.render3d-section {
+  margin-top: 2rem;
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #2c5530 0%, #1a3d1e 100%);
+  color: #ffffff;
+}
+
+.render3d-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.render3d-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.render3d-text {
+  padding-right: 2rem;
+}
+
+.render3d-title {
+  color: #ffffff !important;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.render3d-description {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  color: #e8f5e8 !important;
+}
+
+.render3d-benefits {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #ffffff !important;
+}
+
+.render3d-features {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.render3d-features li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #e8f5e8 !important;
+}
+
+.render3d-features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #4ade80;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.render3d-cta {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #ffffff !important;
+  font-weight: 500;
+}
+
+/* Mini Gallery Styles */
+.render3d-mini-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mini-gallery-main {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  background: #000000;
+}
+
+.mini-gallery-display {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.mini-gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mini-gallery-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  padding: 2rem 1.5rem 1.5rem;
+  color: #ffffff;
+}
+
+.mini-gallery-info {
+  text-align: center;
+}
+
+.mini-gallery-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.mini-gallery-description {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #e8f5e8 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.mini-gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #2c5530;
+}
+
+.mini-gallery-nav:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.mini-gallery-nav-prev {
+  left: 1rem;
+}
+
+.mini-gallery-nav-next {
+  right: 1rem;
+}
+
+.mini-gallery-nav svg {
+  width: 18px;
+  height: 18px;
+}
+
+.mini-gallery-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+}
+
+.mini-gallery-thumbnail {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #000000;
+}
+
+.mini-gallery-thumbnail:hover {
+  border-color: #4ade80;
+  transform: translateY(-2px);
+}
+
+.mini-gallery-thumbnail.active {
+  border-color: #4ade80;
+  box-shadow: 0 4px 12px rgba(74, 222, 128, 0.4);
+}
+
+.mini-gallery-thumbnail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.mini-gallery-thumbnail:hover .mini-gallery-thumbnail-image {
+  transform: scale(1.05);
+}
+
+/* Responsive Design for 3D Section */
+@media (max-width: 1024px) {
+  .render3d-content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .render3d-text {
+    padding-right: 0;
+    text-align: center;
+  }
+  
+  .mini-gallery-thumbnails {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .render3d-section {
+    padding: 3rem 0;
+  }
+  
+  .render3d-title {
+    font-size: 2rem;
+  }
+  
+  .render3d-description {
+    font-size: 1.1rem;
+  }
+  
+  .mini-gallery-main {
+    aspect-ratio: 4/3;
+  }
+  
+  .mini-gallery-nav {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .mini-gallery-nav svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .mini-gallery-thumbnails {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .render3d-container {
+    padding: 0 1rem;
+  }
+  
+  .render3d-content {
+    gap: 2rem;
+  }
+  
+  .render3d-title {
+    font-size: 1.8rem;
+  }
+  
+  .render3d-description {
+    font-size: 1rem;
+  }
+  
+  .render3d-features li {
+    font-size: 0.9rem;
+  }
+  
+  .mini-gallery-main {
+    aspect-ratio: 1/1;
+  }
+  
+  .mini-gallery-nav {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .mini-gallery-nav svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .mini-gallery-thumbnails {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
   }
 }

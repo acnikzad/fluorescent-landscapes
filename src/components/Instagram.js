@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import '../styles/Instagram.css';
+import { INSTAGRAM_CONFIG, getInstagramAccessToken, isInstagramConfigured } from '../config/instagram';
 
 const Instagram = () => {
   const [posts, setPosts] = useState([]);
@@ -11,15 +12,16 @@ const Instagram = () => {
       setLoading(true);
       setError(null);
 
-      // Instagram Basic Display API
-      const ACCESS_TOKEN = process.env.REACT_APP_INSTAGRAM_ACCESS_TOKEN;
-      
-      if (!ACCESS_TOKEN) {
+      // Check if Instagram is configured
+      if (!isInstagramConfigured()) {
         throw new Error('Instagram access token not configured');
       }
 
+      // Instagram Basic Display API
+      const ACCESS_TOKEN = getInstagramAccessToken();
+      
       const response = await fetch(
-        `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink,timestamp&access_token=${ACCESS_TOKEN}&limit=6`
+        `${INSTAGRAM_CONFIG.API_BASE_URL}/me/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink,timestamp&access_token=${ACCESS_TOKEN}&limit=${INSTAGRAM_CONFIG.POSTS_LIMIT}`
       );
 
       if (!response.ok) {
@@ -32,45 +34,8 @@ const Instagram = () => {
       console.error('Instagram API error:', err);
       setError('Unable to load Instagram posts');
       
-      // Fallback to placeholder posts
-      setPosts([
-        {
-          id: '1',
-          media_url: 'https://via.placeholder.com/300x300/4a7c59/ffffff?text=Landscape+Design',
-          caption: 'Beautiful landscape design project completed! 🌿 #landscaping #design',
-          permalink: '#'
-        },
-        {
-          id: '2',
-          media_url: 'https://via.placeholder.com/300x300/2d5016/ffffff?text=Garden+Installation',
-          caption: 'New garden installation in progress! 🌱 #garden #installation',
-          permalink: '#'
-        },
-        {
-          id: '3',
-          media_url: 'https://via.placeholder.com/300x300/4a7c59/ffffff?text=Patio+Design',
-          caption: 'Custom patio design with premium materials! 🏡 #patio #design',
-          permalink: '#'
-        },
-        {
-          id: '4',
-          media_url: 'https://via.placeholder.com/300x300/2d5016/ffffff?text=Water+Features',
-          caption: 'Elegant water feature installation! 💧 #waterfeature #landscaping',
-          permalink: '#'
-        },
-        {
-          id: '5',
-          media_url: 'https://via.placeholder.com/300x300/4a7c59/ffffff?text=Outdoor+Lighting',
-          caption: 'Professional outdoor lighting setup! ✨ #lighting #outdoor',
-          permalink: '#'
-        },
-        {
-          id: '6',
-          media_url: 'https://via.placeholder.com/300x300/2d5016/ffffff?text=Maintenance',
-          caption: 'Regular maintenance keeps your landscape beautiful! 🌿 #maintenance #care',
-          permalink: '#'
-        }
-      ]);
+      // Use fallback posts from config
+      setPosts(INSTAGRAM_CONFIG.FALLBACK_POSTS);
     } finally {
       setLoading(false);
     }
@@ -79,8 +44,8 @@ const Instagram = () => {
   useEffect(() => {
     fetchInstagramPosts();
     
-    // Refresh posts every 12 hours
-    const interval = setInterval(fetchInstagramPosts, 12 * 60 * 60 * 1000);
+    // Refresh posts based on config interval
+    const interval = setInterval(fetchInstagramPosts, INSTAGRAM_CONFIG.REFRESH_INTERVAL);
     return () => clearInterval(interval);
   }, [fetchInstagramPosts]);
 

@@ -1,27 +1,16 @@
 import React from 'react';
 import '../styles/Hero.css';
 import heroImage from '../photos/rs=w_2560,h_1920.jpg';
-import heroVideo from '../photos/natomas p.mov';
 
 const Hero = () => {
   return (
     <section className="hero">
       <div className="hero-background">
-        <video 
-          className="hero-video" 
-          autoPlay 
-          muted 
-          loop 
-          playsInline
-          poster={heroImage}
-        >
-          <source src={heroVideo} type="video/quicktime" />
-          <source src={heroVideo.replace('.mov', '.mp4')} type="video/mp4" />
-          <source src={heroVideo.replace('.mov', '.webm')} type="video/webm" />
-        </video>
-        <div className="hero-fallback">
-          <img src={heroImage} alt="Beautiful landscape design" />
-        </div>
+        <img 
+          src={heroImage} 
+          alt="Beautiful landscape design" 
+          className="hero-image"
+        />
       </div>
       
       <div className="hero-overlay"></div>
