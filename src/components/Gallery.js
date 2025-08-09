@@ -204,30 +204,30 @@ const Gallery = () => {
     );
   }, [galleryItems.length]);
 
-  const goToSlide = (index) => {
+  const goToSlide = useCallback((index) => {
     if (index === currentIndex) return;
     setCurrentIndex(index);
-  };
+  }, [currentIndex]);
 
-  const toggleAutoPlay = () => {
+  const toggleAutoPlay = useCallback(() => {
     setIsAutoPlaying(!isAutoPlaying);
-  };
+  }, [isAutoPlaying]);
 
-  const openModal = () => {
+  const openModal = useCallback(() => {
     setIsModalOpen(true);
     document.body.style.overflow = 'hidden';
-  };
+  }, []);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     setIsModalOpen(false);
     document.body.style.overflow = 'unset';
-  };
+  }, []);
 
-  const handleModalClick = (e) => {
+  const handleModalClick = useCallback((e) => {
     if (e.target.classList.contains('modal-overlay')) {
       closeModal();
     }
-  };
+  }, [closeModal]);
 
   // Auto-rotation timer
   useEffect(() => {
