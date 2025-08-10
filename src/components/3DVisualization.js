@@ -15,38 +15,26 @@ const ThreeDVisualization = () => {
     {
       id: '3d-1',
       image: render3D1,
-      title: "3D Landscape Design",
-      description: "See your vision come to life before construction begins."
     },
     {
       id: '3d-2',
       image: render3D2,
-      title: "Patio & Hardscape Visualization",
-      description: "Perfect planning with photorealistic 3D rendering."
     },
     {
       id: '3d-3',
       image: render3D3,
-      title: "Garden & Plant Design",
-      description: "Visualize seasonal changes and plant growth over time."
     },
     {
       id: '3d-4',
       image: render3D4,
-      title: "Outdoor Living Spaces",
-      description: "Design outdoor kitchens, fire pits, and entertainment areas."
     },
     {
       id: '3d-5',
       image: render3D5,
-      title: "Water Features & Pools",
-      description: "See how water elements integrate with your landscape."
     },
     {
       id: '3d-6',
       image: render3D6,
-      title: "Complete Property Transformation",
-      description: "Full 3D visualization of your entire landscape project."
     }
   ];
 
@@ -115,12 +103,12 @@ const ThreeDVisualization = () => {
                   alt={render3DItems[currentIndex].title} 
                   className="main-image"
                 />
-                <div className="image-overlay">
+                {/* <div className="image-overlay">
                   <div className="overlay-content">
                     <h3 className="image-title">{render3DItems[currentIndex].title}</h3>
                     <p className="image-description">{render3DItems[currentIndex].description}</p>
                   </div>
-                </div>
+                </div> */}
               </div>
               
               <button 
