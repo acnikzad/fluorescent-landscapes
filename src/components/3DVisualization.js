@@ -164,10 +164,6 @@ const ThreeDVisualization = () => {
               alt={render3DItems[currentIndex].title} 
               className="modal-image"
             />
-            <div className="modal-info">
-              <h3 className="modal-title">{render3DItems[currentIndex].title}</h3>
-              <p className="modal-description">{render3DItems[currentIndex].description}</p>
-            </div>
           </div>
         </div>
       )}
