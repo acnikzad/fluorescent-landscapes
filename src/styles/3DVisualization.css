@@ -60,6 +60,35 @@
   color: #d6d2c0 !important;
 }
 
+/* Highest specificity override for Netlify */
+section.three-d-section h2.section-title {
+  color: #d6d2c0 !important;
+}
+
+/* Even higher specificity */
+body .three-d-section .section-title {
+  color: #d6d2c0 !important;
+}
+
+/* Maximum specificity override */
+html body .three-d-section .section-title {
+  color: #d6d2c0 !important;
+}
+
+/* Using the specific ID for maximum specificity */
+#3d-visualization .section-title {
+  color: #d6d2c0 !important;
+}
+
+#3d-visualization h2.section-title {
+  color: #d6d2c0 !important;
+}
+
+/* Ultimate specificity override */
+html body #3d-visualization h2.section-title {
+  color: #d6d2c0 !important;
+}
+
 .main-description {
   font-size: 1.3rem;
   line-height: 1.7;
