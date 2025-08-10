@@ -107,6 +107,11 @@
   text-transform: uppercase;
 }
 
+.btn:focus {
+  outline: 2px solid #00d4ff;
+  outline-offset: 2px;
+}
+
 .btn-primary {
   background: #d6d2c0;
   color: #020301;
@@ -136,6 +141,10 @@
 
 /* Responsive design */
 @media (max-width: 768px) {
+  .hero {
+    background-attachment: scroll; /* Better mobile performance */
+  }
+  
   .hero-title {
     font-size: 2.5rem;
   }
@@ -160,5 +169,59 @@
   .btn {
     width: 100%;
     max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    height: 100vh;
+    min-height: 500px;
+    padding: 1rem;
+  }
+  
+  .hero-content {
+    padding: 0 1rem;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-brand {
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+  }
+  
+  .hero-tagline {
+    font-size: 1.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .btn {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-title {
+    font-size: 1.8rem;
+  }
+  
+  .hero-brand {
+    font-size: 2.2rem;
+  }
+  
+  .hero-tagline {
+    font-size: 1.3rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 0.9rem;
   }
 } 

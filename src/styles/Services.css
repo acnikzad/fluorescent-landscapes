@@ -216,11 +216,59 @@
 
 /* Responsive design */
 @media (max-width: 768px) {
+  .services {
+    padding: 3rem 0;
+  }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+  }
+  
   .services-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
   }
   
   .service-card {
     height: 550px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services {
+    padding: 2rem 0;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .service-card {
+    height: 500px;
+  }
+  
+  .service-title,
+  .service-back-title {
+    font-size: 1.3rem;
+  }
+  
+  .service-description,
+  .service-back-description {
+    font-size: 0.9rem;
+  }
+  
+  .service-btn,
+  .service-back-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
   }
 } 

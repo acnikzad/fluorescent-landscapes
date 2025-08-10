@@ -180,7 +180,56 @@ html {
     font-size: 2rem;
   }
   
+  .section-subtitle {
+    font-size: 1rem;
+  }
+  
   .container {
     padding: 0 1rem;
+  }
+  
+  /* Touch-friendly button sizes */
+  .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Better mobile spacing */
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .section-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .container {
+    padding: 0 0.8rem;
+  }
+  
+  /* Ensure touch targets are large enough */
+  button, a, input, textarea, select {
+    min-height: 44px;
+  }
+  
+  /* Improve mobile scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Better mobile focus states */
+  button:focus,
+  a:focus,
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: 2px solid #00d4ff;
+    outline-offset: 2px;
   }
 } 

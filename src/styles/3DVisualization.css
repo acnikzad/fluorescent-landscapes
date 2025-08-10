@@ -453,23 +453,40 @@ h2.three-d-section-title {
     font-size: 1rem;
   }
   
-  .main-display {
-    aspect-ratio: 4/3;
+  .video-container {
+    max-width: 100%;
+    margin: 0 auto 1rem;
   }
   
-  .nav-button {
-    width: 45px;
-    height: 45px;
+  .video-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
   }
   
-  .nav-button svg {
-    width: 18px;
-    height: 18px;
+  .video-description {
+    font-size: 1rem;
   }
   
-  .thumbnail-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.8rem;
+  .render-thumbnails {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .video-title,
+  .render-gallery-title {
+    font-size: 1.5rem;
+  }
+  
+  .thumbnail-img {
+    height: 100px;
+  }
+  
+  .view-text {
+    font-size: 0.8rem;
+  }
+  
+  .view-icon {
+    font-size: 1rem;
   }
 }
 
@@ -479,7 +496,7 @@ h2.three-d-section-title {
   }
   
   .content-wrapper {
-    gap: 3rem;
+    gap: 2rem;
   }
   
   .section-title {
@@ -502,38 +519,34 @@ h2.three-d-section-title {
     font-size: 1rem;
   }
   
-  .main-display {
-    aspect-ratio: 1/1;
+  .video-title,
+  .render-gallery-title {
+    font-size: 1.3rem;
   }
   
-  .nav-button {
-    width: 40px;
-    height: 40px;
+  .video-description {
+    font-size: 0.9rem;
   }
   
-  .nav-button svg {
-    width: 16px;
-    height: 16px;
+  .render-thumbnails {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
   }
   
-  .thumbnail-grid {
-    gap: 0.6rem;
+  .thumbnail-img {
+    height: 80px;
+  }
+  
+  .view-text {
+    font-size: 0.7rem;
+  }
+  
+  .view-icon {
+    font-size: 0.9rem;
   }
   
   .modal-content {
     max-width: 95vw;
     max-height: 95vh;
-  }
-  
-  .modal-info {
-    padding: 1.5rem;
-  }
-  
-  .modal-title {
-    font-size: 1.5rem;
-  }
-  
-  .modal-description {
-    font-size: 1rem;
   }
 }
