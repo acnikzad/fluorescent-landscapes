@@ -1,3 +1,8 @@
+/* CSS Custom Properties for guaranteed color */
+:root {
+  --3d-section-title-color: #d6d2c0;
+}
+
 .three-d-section {
   padding: 6rem 0;
   background: #000000;
@@ -86,6 +91,43 @@ html body .three-d-section .section-title {
 
 /* Ultimate specificity override */
 html body #3d-visualization h2.section-title {
+  color: #d6d2c0 !important;
+}
+
+/* Ultimate specificity override using attribute selectors */
+section[id="3d-visualization"] h2.section-title {
+  color: var(--3d-section-title-color) !important;
+  color: #d6d2c0 !important;
+}
+
+/* Even more specific using multiple attributes */
+section.three-d-section[id="3d-visualization"] h2.section-title {
+  color: var(--3d-section-title-color) !important;
+  color: #d6d2c0 !important;
+}
+
+/* Nuclear option - using attribute selector with exact match */
+section[id="3d-visualization"] h2[class*="section-title"] {
+  color: var(--3d-section-title-color) !important;
+  color: #d6d2c0 !important;
+}
+
+/* Using the unique class name */
+.three-d-section-title {
+  color: #d6d2c0 !important;
+}
+
+/* Even more specific with the unique class */
+h2.three-d-section-title {
+  color: #d6d2c0 !important;
+}
+
+/* Maximum specificity with unique class */
+.three-d-section h2.three-d-section-title {
+  color: #d6d2c0 !important;
+}
+
+#3d-visualization h2.three-d-section-title {
   color: #d6d2c0 !important;
 }
 

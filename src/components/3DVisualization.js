@@ -71,7 +71,7 @@ const ThreeDVisualization = () => {
       <div className="container">
         <div className="content-wrapper">
           <div className="text-content">
-            <h2 className="section-title" style={{ color: '#d6d2c0' }}>3D Design Visualization</h2>
+            <h2 className="section-title three-d-section-title" style={{ color: '#d6d2c0' }}>3D Design Visualization</h2>
             <p className="main-description">
               Experience the future of landscape design with our cutting-edge 3D rendering technology. 
               No more guesswork or surprises - see exactly how your finished landscape will look before 
