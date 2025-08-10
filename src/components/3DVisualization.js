@@ -6,6 +6,7 @@ import render3D3 from '../photos/3D3.jpg';
 import render3D4 from '../photos/3D4.jpg';
 import render3D5 from '../photos/3D5.jpg';
 import render3D6 from '../photos/3D6.jpg';
+import threeDRenderVideo from '../photos/3Drender.mp4';
 
 const ThreeDVisualization = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -95,58 +96,47 @@ const ThreeDVisualization = () => {
             </p>
           </div>
           
-          <div className="gallery-content">
-            <div className="main-display">
-              <div className="display-image" onClick={openModal}>
-                <img 
-                  src={render3DItems[currentIndex].image} 
-                  alt={render3DItems[currentIndex].title} 
-                  className="main-image"
-                />
-                {/* <div className="image-overlay">
-                  <div className="overlay-content">
-                    <h3 className="image-title">{render3DItems[currentIndex].title}</h3>
-                    <p className="image-description">{render3DItems[currentIndex].description}</p>
-                  </div>
-                </div> */}
-              </div>
-              
-              <button 
-                className="nav-button nav-prev" 
-                onClick={prevSlide}
-                aria-label="Previous 3D rendering"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M15 18l-6-6 6-6"/>
-                </svg>
-              </button>
-              
-              <button 
-                className="nav-button nav-next" 
-                onClick={nextSlide}
-                aria-label="Next 3D rendering"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M9 18l6-6-6-6"/>
-                </svg>
-              </button>
-            </div>
-
-            <div className="thumbnail-grid">
-              {render3DItems.map((item, index) => (
-                <button
-                  key={item.id}
-                  className={`thumbnail ${index === currentIndex ? 'active' : ''}`}
-                  onClick={() => setCurrentIndex(index)}
-                  aria-label={`Go to ${item.title}`}
+          <div className="media-content">
+            {/* 3D Render Video Showcase */}
+            <div className="video-showcase">
+              <h3 className="video-title">See Our 3D Process in Action</h3>
+              <div className="video-container">
+                <video 
+                  className="three-d-video"
+                  controls
+                  preload="metadata"
+                  poster={render3D1}
+                  aria-label="3D Design Visualization Process"
                 >
-                  <img 
-                    src={item.image} 
-                    alt={item.title} 
-                    className="thumbnail-image"
-                  />
-                </button>
-              ))}
+                  <source src={threeDRenderVideo} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+            
+            {/* 3D Render Gallery */}
+            <div className="render-gallery">
+              <div className="render-thumbnails">
+                {render3DItems.map((item, index) => (
+                  <div
+                    key={item.id}
+                    className="render-thumbnail"
+                    onClick={() => {
+                      setCurrentIndex(index);
+                      openModal();
+                    }}
+                  >
+                    <img 
+                      src={item.image} 
+                      alt={`3D Render ${index + 1}`}
+                      className="thumbnail-img"
+                    />
+                    <div className="thumbnail-overlay">
+                      <span className="view-text">Click to View</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
