@@ -63,7 +63,7 @@
 }
 
 .nav-link:hover {
-  color: var(--accent-primary);
+  color: #00d4ff;
 }
 
 .nav-link::after {
@@ -73,7 +73,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--accent-primary);
+  background: #00d4ff;
   transition: width 0.3s ease;
 }
 
