@@ -39,18 +39,6 @@ const ThreeDVisualization = () => {
     }
   ];
 
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === render3DItems.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? render3DItems.length - 1 : prevIndex - 1
-    );
-  };
-
   const openModal = () => {
     setIsModalOpen(true);
     document.body.style.overflow = 'hidden';
