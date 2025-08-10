@@ -6,10 +6,12 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
+    console.log('Toggle menu clicked, current state:', isMenuOpen);
     setIsMenuOpen(!isMenuOpen);
   };
 
   const closeMenu = () => {
+    console.log('Closing menu');
     setIsMenuOpen(false);
   };
 
@@ -45,6 +47,17 @@ const Header = () => {
 
         {/* Navigation Menu */}
         <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`}>
+          {/* Close Button - Only show when mobile menu is open */}
+          {isMenuOpen && (
+            <button 
+              className="nav-close-btn"
+              onClick={closeMenu}
+              aria-label="Close navigation menu"
+            >
+              ×
+            </button>
+          )}
+          
           <ul className="nav-list">
             <li><a href="#home" className="nav-link" onClick={() => scrollToSection('home')}>Home</a></li>
             <li><a href="#services" className="nav-link" onClick={() => scrollToSection('services')}>Services</a></li>
