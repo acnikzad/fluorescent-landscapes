@@ -145,7 +145,7 @@ const Gallery = () => {
             <div className="gallery-display" onClick={openModal}>
               <img 
                 src={galleryItems[currentIndex].image} 
-                alt={`Gallery image ${currentIndex + 1} of ${galleryItems.length}`}
+                alt={`Main gallery display showing landscape project ${currentIndex + 1}`}
                 className="gallery-main-image"
               />
             </div>
@@ -194,7 +194,7 @@ const Gallery = () => {
                 >
                   <img 
                     src={item.image} 
-                    alt={`Thumbnail ${index + 1} of ${galleryItems.length}`}
+                    alt={`Thumbnail preview of landscape project ${index + 1}`}
                     className="thumbnail-image"
                   />
                 </button>
@@ -226,7 +226,7 @@ const Gallery = () => {
             </button>
             <img 
               src={galleryItems[currentIndex].image} 
-              alt={`Full size view of gallery image ${currentIndex + 1}`}
+              alt={`Full size view of landscape project ${currentIndex + 1}`}
               className="modal-image"
             />
           </div>
