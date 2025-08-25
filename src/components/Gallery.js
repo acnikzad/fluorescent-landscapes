@@ -145,7 +145,7 @@ const Gallery = () => {
             <div className="gallery-display" onClick={openModal}>
               <img 
                 src={galleryItems[currentIndex].image} 
-                alt="Gallery image" 
+                alt={`Gallery image ${currentIndex + 1} of ${galleryItems.length}`}
                 className="gallery-main-image"
               />
             </div>
@@ -194,7 +194,7 @@ const Gallery = () => {
                 >
                   <img 
                     src={item.image} 
-                    alt="Gallery thumbnail" 
+                    alt={`Thumbnail ${index + 1} of ${galleryItems.length}`}
                     className="thumbnail-image"
                   />
                 </button>
@@ -226,7 +226,7 @@ const Gallery = () => {
             </button>
             <img 
               src={galleryItems[currentIndex].image} 
-              alt="Gallery image" 
+              alt={`Full size view of gallery image ${currentIndex + 1}`}
               className="modal-image"
             />
           </div>
