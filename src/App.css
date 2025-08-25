@@ -5,12 +5,35 @@
   box-sizing: border-box;
 }
 
+:root {
+  /* Deep Teal & Light Cyan Dark Mode Theme */
+  --primary: #008080;          /* Deep Teal - Core logo color for headers and main elements */
+  --primary-variant: #A5F2F3;  /* Light Cyan - Softer blue for backgrounds or highlights */
+  --secondary: #36454F;        /* Charcoal Gray - For text and borders */
+  --neutral: #000000;          /* Black - For strong contrasts and footers */
+  --accent: #CC5500;           /* Burnt Orange - Warm pop to complement blues */
+  --neutral-light: #2A2A2A;    /* Soft Charcoal Gray - Dark mode background */
+  
+  /* Derived Colors */
+  --primary-hover: #006666;    /* Darker deep teal for hover states */
+  --primary-light: #E6F7F7;    /* Very light cyan for subtle highlights */
+  --secondary-light: #5A6B7A;  /* Lighter charcoal for secondary text */
+  --accent-hover: #B34A00;     /* Darker burnt orange for hover states */
+  --accent-light: #FFE6CC;     /* Light burnt orange for subtle accents */
+  
+  /* Shadows */
+  --shadow-light: rgba(0, 128, 128, 0.1);
+  --shadow-medium: rgba(0, 128, 128, 0.2);
+  --shadow-dark: rgba(0, 0, 0, 0.5);
+  --shadow-accent: rgba(204, 85, 0, 0.3);
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  color: #d4e8d4;
+  color: var(--primary-variant);
   overflow-x: hidden;
-  background-color: #1a1f1a;
+  background-color: var(--neutral-light);
 }
 
 .App {
@@ -44,31 +67,30 @@ html {
 }
 
 .btn-primary {
-  background: #020301;
-  color: #d6d2c0;
-  box-shadow: 0 4px 15px rgba(2, 3, 1, 0.3);
-  border: 2px solid #020301;
+  background: var(--primary);
+  color: var(--primary-variant);
+  box-shadow: 0 4px 15px var(--shadow-light);
+  border: 2px solid var(--primary);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(2, 3, 1, 0.4);
-  background: transparent;
-  color: #020301;
-  border-color: #020301;
+  box-shadow: 0 6px 20px var(--shadow-medium);
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
 }
 
 .btn-secondary {
   background: transparent;
-  color: #d6d2c0;
-  border: 2px solid #d6d2c0;
+  color: var(--primary);
+  border: 2px solid var(--primary);
 }
 
 .btn-secondary:hover {
-  background: #d6d2c0;
-  color: #020301;
+  background: var(--primary);
+  color: var(--primary-variant);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(214, 210, 192, 0.4);
+  box-shadow: 0 6px 20px var(--shadow-light);
 }
 
 /* Container utility */
@@ -87,14 +109,14 @@ html {
 .section-title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #a8c5a8;
+  color: var(--primary);
   margin-bottom: 1rem;
-  text-shadow: 0 0 15px rgba(168, 197, 168, 0.6);
+  text-shadow: 0 0 15px var(--shadow-light);
 }
 
 .section-subtitle {
   font-size: 1.1rem;
-  color: #d4e8d4;
+  color: var(--primary-variant);
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/Header.css';
-import logo from '../photos/F.png';
+import logo from '../photos/Fluorecent Landscapes-Plant.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

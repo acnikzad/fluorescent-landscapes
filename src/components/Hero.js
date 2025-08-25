@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/Hero.css';
 import heroImage from '../photos/rs=w_2560,h_1482.jpg';
+import flLogo from '../photos/Fluorecent Landscapes-FL.png';
 
 const Hero = () => {
   const scrollToSection = (sectionId) => {
@@ -26,14 +27,20 @@ const Hero = () => {
       <div className="hero-overlay"></div>
       
       <div className="hero-content">
-        <div className="hero-text">
-          <h1 className="hero-title">
-            <span className="hero-brand">Fluorescent Landscapes</span>
-            <span className="hero-tagline">Transform Your Outdoor Space</span>
-          </h1>
-          <p className="hero-subtitle">
-            Professional landscaping design & installation
-          </p>
+        <div className="hero-brand-section">
+          <div className="hero-logo-container">
+            <img 
+              src={flLogo} 
+              alt="Fluorescent Landscapes Logo" 
+              className="hero-logo-image"
+            />
+          </div>
+          
+          <div className="hero-brand">
+            <h1 className="hero-company-name">Fluorescent Landscapes</h1>
+            <div className="hero-divider"></div>
+            <p className="hero-tagline">Professional landscaping design & installationn</p>
+          </div>
         </div>
         
         <div className="hero-cta">

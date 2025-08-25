@@ -62,7 +62,7 @@ const ThreeDVisualization = () => {
           <div className="text-content">
             <h2 className="section-title three-d-section-title" style={{ color: '#d6d2c0' }}>3D Design Visualization</h2>
             <p className="main-description">
-              Experience the future of landscape design with our cutting-edge 3D rendering technology. 
+              This is where your project begins. Experience the future of landscape design with our cutting-edge 3D rendering technology. 
               No more guesswork or surprises - see exactly how your finished landscape will look before 
               we even break ground.
             </p>
@@ -87,7 +87,7 @@ const ThreeDVisualization = () => {
           <div className="media-content">
             {/* 3D Render Video Showcase */}
             <div className="video-showcase">
-              <h3 className="video-title">See Our 3D Process in Action</h3>
+              <h3 className="video-title">See Our 3D Design Process</h3>
               <div className="video-container">
                 <video 
                   className="three-d-video"

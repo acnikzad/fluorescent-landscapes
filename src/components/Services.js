@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import '../styles/Services.css';
-import designImage from '../photos/rs=w_1280,h_853.jpg';
+import designImage from '../photos/1000018961.jpg';
 import installationImage from '../photos/rs=w_1280,h_960.jpg';
-import maintenanceImage from '../photos/rs=w_1280,h_681.jpg';
+import concreteImage from '../photos/rs=w_1280,h_1707.jpg';
 
 const Services = () => {
   const [flippedCards, setFlippedCards] = useState({});
@@ -50,21 +50,21 @@ const Services = () => {
       backButtonText: 'Get Construction Quote'
     },
     {
-      id: 'maintenance',
-      title: 'Maintenance & Care',
-      description: 'Ongoing maintenance services to keep your landscape looking its best year-round. From seasonal cleanups to regular care programs.',
-      image: maintenanceImage,
-      backTitle: 'Maintenance Services',
-      backDescription: 'Keep your landscape beautiful with our comprehensive maintenance programs.',
+      id: 'concrete',
+      title: 'Concrete Services',
+      description: 'Transform your outdoor space with durable and stylish concrete solutions. From patios to driveways, we bring your vision to life.',
+      image: concreteImage,
+      backTitle: 'Concrete Solutions',
+      backDescription: 'Enhance your landscape with our expert concrete installation and design services.',
       features: [
-        'Lawn mowing & edging',
-        'Plant pruning & trimming',
-        'Fertilization programs',
-        'Pest & disease control',
-        'Seasonal cleanup',
-        'Irrigation maintenance'
+        'Patio & walkway installation',
+        'Driveway paving',
+        'Concrete stamping & coloring',
+        'Retaining walls & steps',
+        'Repair & resurfacing',
+        'Custom concrete designs'
       ],
-      backButtonText: 'Get Maintenance Quote'
+      backButtonText: 'Get Concrete Quote'
     }
   ];
 
