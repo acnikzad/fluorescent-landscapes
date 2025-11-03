@@ -19,10 +19,11 @@ const Mission = () => {
             </p>
           </div>
           <div className="mission-portrait">
-            <div className="portrait-placeholder">
-              <div className="portrait-icon">👤</div>
-              <p className="portrait-text">Portrait Placeholder</p>
-            </div>
+            <img 
+              src={require('../photos/PortraitEdited.jpg')} 
+              alt="Portrait of Fluorescent Landscapes team"
+              className="mission-portrait-image"
+            />
           </div>
         </div>
       </div>

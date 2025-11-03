@@ -29,6 +29,12 @@
   --accent-primary: var(--color-sundance) !important;
   --accent-secondary: var(--color-gurkha) !important;
   --accent-hover: var(--color-sundance-dark) !important;
+  --accent-blue: #00d4ff !important;
+  --accent-blue-dark: #0099cc !important;
+  
+  /* Additional blue accent variables for better visibility */
+  --accent-blue-light: #33ddff !important;
+  --accent-blue-transparent: rgba(0, 212, 255, 0.8) !important;
   
   /* Shadow Colors */
   --shadow-light: rgba(0, 0, 0, 0.1) !important;
@@ -67,6 +73,18 @@ main {
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+/* Global blue accent rules to ensure visibility */
+*[class*="accent-blue"],
+*[class*="blue-accent"] {
+  color: var(--accent-blue) !important;
+}
+
+/* Ensure blue gradients are visible */
+*[style*="accent-blue"],
+*[style*="00d4ff"] {
+  background: var(--accent-blue) !important;
 }
 
 /* Button styles */

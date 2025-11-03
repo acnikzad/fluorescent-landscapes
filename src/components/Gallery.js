@@ -12,7 +12,6 @@ import galleryImage9 from '../photos/rs=w_2560,h_1920 (3).jpg';
 import galleryImage10 from '../photos/rs=w_1280,h_1707.jpg';
 import galleryImage11 from '../photos/rs=w_1280,h_1707 (1).jpg';
 import galleryImage12 from '../photos/rs=w_2560,h_1482.jpg';
-// New photos
 import galleryImage13 from '../photos/499560136_122099237882884636_4546722423210478753_n.jpg';
 import galleryImage14 from '../photos/499680481_122099635148884636_3296451225672780216_n.jpg';
 import galleryImage15 from '../photos/499683779_122099237870884636_8692745569202705912_n.jpg';
@@ -99,35 +98,42 @@ const Gallery = () => {
     }
   }, [closeModal]);
 
-  // Auto-rotation timer
   useEffect(() => {
     if (!isAutoPlaying) return;
 
     const interval = setInterval(() => {
       nextSlide();
-    }, 5000); // Change slide every 5 seconds
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [isAutoPlaying, nextSlide]);
 
-  // Keyboard navigation
   useEffect(() => {
+    if (!isModalOpen) return;
+    
     const handleKeyPress = (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) {
+        return;
+      }
+      
       if (e.key === 'ArrowLeft') {
+        e.preventDefault();
         prevSlide();
       } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
         nextSlide();
       } else if (e.key === ' ') {
         e.preventDefault();
         toggleAutoPlay();
       } else if (e.key === 'Escape') {
+        e.preventDefault();
         closeModal();
       }
     };
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [prevSlide, nextSlide, toggleAutoPlay, closeModal]);
+  }, [isModalOpen, prevSlide, nextSlide, toggleAutoPlay, closeModal]);
 
   return (
     <section id="gallery" className="gallery">

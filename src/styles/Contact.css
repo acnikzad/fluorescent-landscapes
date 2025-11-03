@@ -135,7 +135,6 @@
   font-size: 1.4rem;
   font-family: 'Georgia', serif !important;
   font-weight: 600;
-  /* Font test - this should make text look very different */
 }
 
 .contact-option p {
@@ -199,6 +198,21 @@
   border-color: var(--primary);
   background: var(--neutral-light);
   box-shadow: 0 0 0 3px var(--shadow-light);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--accent-blue) !important;
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2) !important;
+}
+
+/* More specific selector to override any conflicts */
+.contact .form-group input:focus,
+.contact .form-group textarea:focus,
+#contact .form-group input:focus,
+#contact .form-group textarea:focus {
+  border-color: var(--accent-blue) !important;
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.2) !important;
 }
 
 .form-group input::placeholder,
@@ -478,7 +492,11 @@ input[type="text"],
 input[type="email"],
 input[type="tel"],
 input[type="url"],
-input[type="search"],
+input[type="search"] {
+  text-transform: none !important;
+}
+
+/* Textarea-specific rules */
 textarea {
   white-space: pre-wrap !important;
   word-wrap: break-word !important;
@@ -501,8 +519,12 @@ textarea {
 /* Global input protection - highest priority */
 * input[type="text"],
 * input[type="email"],
-* input[type="tel"],
-* * textarea {
+* input[type="tel"] {
+  text-transform: none !important;
+}
+
+/* Global textarea protection */
+* textarea {
   white-space: pre-wrap !important;
   word-wrap: break-word !important;
   text-transform: none !important;
@@ -521,14 +543,18 @@ textarea {
 html body .contact input[type="text"],
 html body .contact input[type="email"],
 html body .contact input[type="tel"],
-html body .contact textarea,
 html body .questionnaire-form input[type="text"],
 html body .questionnaire-form input[type="email"],
 html body .questionnaire-form input[type="tel"],
-html body .questionnaire-form textarea,
 html body .message-form input[type="text"],
 html body .message-form input[type="email"],
-html body .message-form input[type="tel"],
+html body .message-form input[type="tel"] {
+  text-transform: none !important;
+}
+
+/* Ultimate textarea protection - highest specificity */
+html body .contact textarea,
+html body .questionnaire-form textarea,
 html body .message-form textarea {
   white-space: pre-wrap !important;
   word-wrap: break-word !important;

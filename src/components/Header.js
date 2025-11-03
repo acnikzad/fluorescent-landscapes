@@ -23,7 +23,7 @@ const Header = () => {
         block: 'start'
       });
     }
-    closeMenu(); // Close mobile menu after navigation
+    closeMenu();
   };
 
   return (

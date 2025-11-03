@@ -66,25 +66,43 @@ section.mission,
   align-items: center;
 }
 
-.portrait-placeholder {
-  background: var(--neutral);
-  border: 3px solid var(--primary);
+.mission-portrait-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
   border-radius: 20px;
-  padding: 3rem;
-  text-align: center;
-  box-shadow: 0 10px 30px var(--shadow-light);
+  border: 3px solid var(--primary);
+  box-shadow: 0 10px 30px var(--shadow-medium);
   transition: all 0.3s ease;
-  min-height: 400px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: block;
+  object-fit: cover;
+  position: relative;
+  overflow: hidden;
 }
 
-.portrait-placeholder:hover {
+.mission-portrait-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent-blue)) !important;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+/* More specific selector to override any conflicts */
+.mission .mission-portrait-image::before,
+#mission .mission-portrait-image::before,
+section.mission .mission-portrait-image::before {
+  background: linear-gradient(90deg, var(--primary), var(--accent-blue)) !important;
+}
+
+.mission-portrait-image:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 40px var(--shadow-medium);
-  border-color: var(--primary-variant);
+  box-shadow: 0 15px 40px var(--shadow-dark);
+  border-color: var(--accent-blue);
 }
 
 .portrait-icon {
@@ -115,13 +133,8 @@ section.mission,
     font-size: 2rem;
   }
   
-  .portrait-placeholder {
-    min-height: 300px;
-    padding: 2rem;
-  }
-  
-  .portrait-icon {
-    font-size: 3rem;
+  .mission-portrait-image {
+    max-width: 100%;
   }
 }
 
@@ -138,8 +151,8 @@ section.mission,
     font-size: 1rem;
   }
   
-  .portrait-placeholder {
-    min-height: 250px;
-    padding: 1.5rem;
+  .mission-portrait-image {
+    max-width: 100%;
+    border-radius: 15px;
   }
 }

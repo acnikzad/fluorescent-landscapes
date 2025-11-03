@@ -4,21 +4,11 @@ import plantLogo from '../photos/Fluorecent Landscapes-Plant.png';
 import emailjs from 'emailjs-com';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
-  });
-  
   const [questionnaireData, setQuestionnaireData] = useState({
-    // Contact Information
     fullName: '',
     phoneNumber: '',
     emailAddress: '',
     projectAddress: '',
-    
-    // Project Type
     projectTypes: {
       frontYard: false,
       backyard: false,
@@ -28,16 +18,12 @@ const Contact = () => {
       other: false,
       otherSpecify: ''
     },
-    
-    // Scope of Work
     scopeOfWork: {
       newLandscaping: false,
       concreteHardscape: false,
       paverPatio: false,
       retainingWalls: false
     },
-    
-    // Services
     services: {
       artificialTurf: false,
       irrigationSystem: false,
@@ -51,16 +37,10 @@ const Contact = () => {
       other: false,
       otherSpecify: ''
     },
-    
-    // Budget & Timeline
     budget: '',
     idealStartDate: '',
     projectDeadline: '',
-    
-    // Design Vision
     designVision: '',
-    
-    // Inspiration & Notes
     hasReferencePhotos: false,
     additionalNotes: ''
   });
@@ -70,102 +50,63 @@ const Contact = () => {
   const [showQuestionnaire, setShowQuestionnaire] = useState(false);
   const [showMessageModal, setShowMessageModal] = useState(false);
 
-  // Ensure spaces are preserved in all input fields
   useEffect(() => {
-    const preserveSpaces = (e) => {
-      if (e.target.type === 'text' || e.target.type === 'email' || e.target.type === 'tel' || e.target.tagName === 'TEXTAREA') {
-        // Prevent any text processing or auto-correction
-        e.preventDefault();
-        e.stopPropagation();
-        
-        // Get the current cursor position
-        const cursorPos = e.target.selectionStart;
-        const originalValue = e.target.value;
-        
-        // If this is a keydown event for space, ensure it's handled properly
-        if (e.type === 'keydown' && e.key === ' ') {
-          // Allow the space to be added naturally
-          return true;
-        }
-        
-        // For other events, ensure the value isn't modified
-        if (e.type === 'input' && e.target.value !== originalValue) {
-          // Restore the original value and cursor position
-          e.target.value = originalValue;
-          e.target.setSelectionRange(cursorPos, cursorPos);
-        }
-      }
-    };
-
-    // Add event listeners to all input fields
-    const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], textarea');
-    inputs.forEach(input => {
-      input.addEventListener('input', preserveSpaces, true);
-      input.addEventListener('keydown', preserveSpaces, true);
-      input.addEventListener('keyup', preserveSpaces, true);
-      input.addEventListener('beforeinput', preserveSpaces, true);
+    if (!showQuestionnaire && !showMessageModal) return;
+    
+    const timeoutId = setTimeout(() => {
+      const modalSelector = showQuestionnaire 
+        ? '.questionnaire-modal' 
+        : '.message-modal';
+      const modal = document.querySelector(modalSelector);
+      if (!modal) return;
       
-      // Disable any browser auto-features
-      input.setAttribute('autocomplete', 'off');
-      input.setAttribute('autocorrect', 'off');
-      input.setAttribute('autocapitalize', 'off');
-      input.setAttribute('spellcheck', 'false');
-    });
-
-    // Cleanup
-    return () => {
+      const inputs = modal.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], textarea');
       inputs.forEach(input => {
-        input.removeEventListener('input', preserveSpaces, true);
-        input.removeEventListener('keydown', preserveSpaces, true);
-        input.removeEventListener('keyup', preserveSpaces, true);
-        input.removeEventListener('beforeinput', preserveSpaces, true);
+        if (!input.hasAttribute('data-attributes-set')) {
+          input.setAttribute('autocomplete', 'off');
+          input.setAttribute('autocorrect', 'off');
+          input.setAttribute('autocapitalize', 'off');
+          input.setAttribute('spellcheck', 'false');
+          input.setAttribute('data-attributes-set', 'true');
+        }
       });
-    };
-  }, []);
+    }, 100);
+    
+    return () => clearTimeout(timeoutId);
+  }, [showQuestionnaire, showMessageModal]);
 
-  const handleChange = (e) => {
-    // Ensure spaces are preserved by not modifying the value
-    const value = e.target.value;
-    setFormData({
-      ...formData,
-      [e.target.name]: value
-    });
-  };
 
   const handleQuestionnaireChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, type, checked, value } = e.target;
     
-    if (type === 'checkbox') {
-      if (name.includes('.')) {
-        const [section, field] = name.split('.');
-        setQuestionnaireData(prev => ({
-          ...prev,
-          [section]: {
-            ...prev[section],
-            [field]: checked
-          }
-        }));
+    if (type === 'checkbox' || type === 'radio') {
+      let newValue;
+      
+      if (type === 'checkbox') {
+        newValue = checked;
       } else {
-        setQuestionnaireData(prev => ({
-          ...prev,
-          [name]: checked
-        }));
+        if (value === 'true') {
+          newValue = true;
+        } else if (value === 'false') {
+          newValue = false;
+        } else {
+          newValue = value;
+        }
       }
-    } else {
-      // Ensure spaces are preserved by not modifying the value
+      
       if (name.includes('.')) {
         const [section, field] = name.split('.');
         setQuestionnaireData(prev => ({
           ...prev,
           [section]: {
             ...prev[section],
-            [field]: value
+            [field]: newValue
           }
         }));
       } else {
         setQuestionnaireData(prev => ({
           ...prev,
-          [name]: value
+          [name]: newValue
         }));
       }
     }
@@ -186,7 +127,7 @@ const Contact = () => {
 
       if (result.status === 200) {
         setSubmitStatus('success');
-        setFormData({ name: '', email: '', phone: '', message: '' });
+        e.target.reset();
       } else {
         setSubmitStatus('error');
       }
@@ -203,58 +144,50 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      // Prepare the data for EmailJS - only include selected options
+      const form = e.target;
+      
+      const getValue = (name) => {
+        const input = form.querySelector(`[name="${name}"]`);
+        return input ? input.value : '';
+      };
+      
       const templateParams = {
-        fullName: questionnaireData.fullName,
-        phoneNumber: questionnaireData.phoneNumber,
-        emailAddress: questionnaireData.emailAddress,
-        projectAddress: questionnaireData.projectAddress,
-        
-        // Project Types - only include selected ones
+        fullName: getValue('fullName'),
+        phoneNumber: getValue('phoneNumber'),
+        emailAddress: getValue('emailAddress'),
+        projectAddress: getValue('projectAddress'),
         selectedProjectTypes: Object.entries(questionnaireData.projectTypes)
           .filter(([key, value]) => value === true && key !== 'other')
           .map(([key]) => key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase()))
           .join(', '),
-        otherProjectType: questionnaireData.projectTypes.otherSpecify || null,
-        
-        // Scope of Work - only include selected ones
+        otherProjectType: getValue('projectTypes.otherSpecify') || null,
         selectedScopeOfWork: Object.entries(questionnaireData.scopeOfWork)
           .filter(([key, value]) => value === true)
           .map(([key]) => key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase()))
           .join(', '),
-        
-        // Services - only include selected ones
         selectedServices: Object.entries(questionnaireData.services)
           .filter(([key, value]) => value === true && key !== 'other')
           .map(([key]) => key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase()))
           .join(', '),
-        otherServices: questionnaireData.services.otherSpecify || null,
-        
-        // Budget & Timeline
+        otherServices: getValue('services.otherSpecify') || null,
         budget: questionnaireData.budget || 'Not specified',
-        idealStartDate: questionnaireData.idealStartDate || 'Not specified',
-        projectDeadline: questionnaireData.projectDeadline || 'Not specified',
-        
-        // Design Vision
-        designVision: questionnaireData.designVision || 'Not specified',
-        
-        // Additional Info
+        idealStartDate: getValue('idealStartDate') || 'Not specified',
+        projectDeadline: getValue('projectDeadline') || 'Not specified',
+        designVision: getValue('designVision') || 'Not specified',
         hasReferencePhotos: questionnaireData.hasReferencePhotos ? 'Yes' : 'No',
-        additionalNotes: questionnaireData.additionalNotes || 'None'
+        additionalNotes: getValue('additionalNotes') || 'None'
       };
 
-      // Send to EmailJS
       const result = await emailjs.send(
         process.env.REACT_APP_EMAILJS_SERVICE,
-        process.env.REACT_APP_EMAILJS_QUESTIONNAIRE_TEMPLATE, // You'll need to add this to your .env
+        process.env.REACT_APP_EMAILJS_QUESTIONNAIRE_TEMPLATE,
         templateParams,
         process.env.REACT_APP_EMAILJS_PUBLIC_KEY
       );
 
       if (result.status === 200) {
         setSubmitStatus('success');
-        setShowQuestionnaire(false);
-        // Reset form data
+        form.reset();
         setQuestionnaireData({
           fullName: '',
           phoneNumber: '',
@@ -394,7 +327,15 @@ const Contact = () => {
 
       {/* Questionnaire Modal */}
       {showQuestionnaire && (
-        <div className="questionnaire-modal-overlay" onClick={() => setShowQuestionnaire(false)}>
+        <div 
+          className="questionnaire-modal-overlay" 
+          onClick={() => setShowQuestionnaire(false)}
+          onKeyDown={(e) => {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) {
+              return;
+            }
+          }}
+        >
           <div className="questionnaire-modal" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <h2>Client Intake Form</h2>
@@ -416,10 +357,8 @@ const Contact = () => {
                     <input 
                       type="text" 
                       name="fullName"
-                      value={questionnaireData.fullName}
-                      onChange={handleQuestionnaireChange}
+                      defaultValue=""
                       required
-                      style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}
                       autoComplete="off"
                       autoCorrect="off"
                       autoCapitalize="off"
@@ -431,10 +370,8 @@ const Contact = () => {
                     <input 
                       type="tel" 
                       name="phoneNumber"
-                      value={questionnaireData.phoneNumber}
-                      onChange={handleQuestionnaireChange}
+                      defaultValue=""
                       required
-                      style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}
                       autoComplete="off"
                       autoCorrect="off"
                       autoCapitalize="off"
@@ -448,10 +385,8 @@ const Contact = () => {
                     <input 
                       type="email" 
                       name="emailAddress"
-                      value={questionnaireData.emailAddress}
-                      onChange={handleQuestionnaireChange}
+                      defaultValue=""
                       required
-                      style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}
                     />
                   </div>
                   <div className="form-group">
@@ -459,10 +394,8 @@ const Contact = () => {
                     <input 
                       type="text" 
                       name="projectAddress"
-                      value={questionnaireData.projectAddress}
-                      onChange={handleQuestionnaireChange}
+                      defaultValue=""
                       required
-                      style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}
                     />
                   </div>
                 </div>
@@ -533,8 +466,7 @@ const Contact = () => {
                       type="text" 
                       name="projectTypes.otherSpecify"
                       placeholder="Please specify other project type"
-                      value={questionnaireData.projectTypes.otherSpecify}
-                      onChange={handleQuestionnaireChange}
+                      defaultValue=""
                     />
                   </div>
                 )}
@@ -684,8 +616,7 @@ const Contact = () => {
                       type="text" 
                       name="services.otherSpecify"
                       placeholder="Please specify other services"
-                      value={questionnaireData.services.otherSpecify}
-                      onChange={handleQuestionnaireChange}
+                      defaultValue=""
                     />
                   </div>
                 )}
@@ -725,8 +656,7 @@ const Contact = () => {
                     <input 
                       type="date" 
                       name="idealStartDate"
-                      value={questionnaireData.idealStartDate}
-                      onChange={handleQuestionnaireChange}
+                      defaultValue=""
                     />
                   </div>
                   <div className="form-group">
@@ -734,8 +664,7 @@ const Contact = () => {
                     <input 
                       type="date" 
                       name="projectDeadline"
-                      value={questionnaireData.projectDeadline}
-                      onChange={handleQuestionnaireChange}
+                      defaultValue=""
                     />
                   </div>
                 </div>
@@ -750,8 +679,7 @@ const Contact = () => {
                     name="designVision"
                     rows="4"
                     placeholder="Tell us about your vision..."
-                    value={questionnaireData.designVision}
-                    onChange={handleQuestionnaireChange}
+                    defaultValue=""
                     style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}
                   ></textarea>
                 </div>
@@ -791,8 +719,7 @@ const Contact = () => {
                     name="additionalNotes"
                     rows="4"
                     placeholder="Additional notes..."
-                    value={questionnaireData.additionalNotes}
-                    onChange={handleQuestionnaireChange}
+                    defaultValue=""
                     style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}
                   ></textarea>
                 </div>
@@ -826,7 +753,15 @@ const Contact = () => {
 
       {/* Message Modal */}
       {showMessageModal && (
-        <div className="message-modal-overlay" onClick={() => setShowMessageModal(false)}>
+        <div 
+          className="message-modal-overlay" 
+          onClick={() => setShowMessageModal(false)}
+          onKeyDown={(e) => {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) {
+              return;
+            }
+          }}
+        >
           <div className="message-modal" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <h2>Send Us a Message</h2>
@@ -845,10 +780,13 @@ const Contact = () => {
                   type="text" 
                   name="name"
                   placeholder="Your Name" 
-                  value={formData.name}
-                  onChange={handleChange}
-                  required 
-                  style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}
+                  defaultValue=""
+                  inputMode="text"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  autoCapitalize="off"
+                  spellCheck="false"
+                  required
                 />
               </div>
               <div className="form-group">
@@ -857,10 +795,13 @@ const Contact = () => {
                   type="text" 
                   name="email"
                   placeholder="Your Email" 
-                  value={formData.email}
-                  onChange={handleChange}
-                  required 
-                  style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}
+                  defaultValue=""
+                  inputMode="email"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  autoCapitalize="off"
+                  spellCheck="false"
+                  required
                 />
               </div>
               <div className="form-group">
@@ -869,9 +810,12 @@ const Contact = () => {
                   type="tel" 
                   name="phone"
                   placeholder="Your Phone" 
-                  value={formData.phone}
-                  onChange={handleChange}
-                  style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}
+                  defaultValue=""
+                  inputMode="tel"
+                  autoComplete="off"
+                  autoCorrect="off"
+                  autoCapitalize="off"
+                  spellCheck="false"
                 />
               </div>
               <div className="form-group">
@@ -880,8 +824,7 @@ const Contact = () => {
                   name="message"
                   placeholder="Tell us about your question or project" 
                   rows="5" 
-                  value={formData.message}
-                  onChange={handleChange}
+                  defaultValue=""
                   required
                   style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}
                 ></textarea>

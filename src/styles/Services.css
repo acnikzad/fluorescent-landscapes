@@ -58,6 +58,29 @@
   border-color: var(--primary);
 }
 
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent-blue)) !important;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* More specific selector to override any conflicts */
+.services .service-card::before,
+#services .service-card::before,
+section.services .service-card::before {
+  background: linear-gradient(90deg, var(--primary), var(--accent-blue)) !important;
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
 .service-card-inner {
   position: relative;
   width: 100%;
