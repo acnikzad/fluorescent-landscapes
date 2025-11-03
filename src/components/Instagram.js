@@ -7,89 +7,86 @@ const Instagram = () => {
   const [error, setError] = useState(null);
   const [selectedVideo, setSelectedVideo] = useState(null);
 
-  const INSTAGRAM_APP_ID = process.env.REACT_APP_INSTAGRAM_APP_ID;
-  const INSTAGRAM_APP_SECRET = process.env.REACT_APP_INSTAGRAM_APP_SECRET;
-  const INSTAGRAM_ACCESS_TOKEN = process.env.REACT_APP_INSTAGRAM_ACCESS_TOKEN;
-
   useEffect(() => {
+    const fetchInstagramPosts = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const INSTAGRAM_ACCESS_TOKEN = process.env.REACT_APP_INSTAGRAM_ACCESS_TOKEN;
+        const INSTAGRAM_USER_ID = process.env.REACT_APP_INSTAGRAM_USER_ID;
+
+        if (!INSTAGRAM_ACCESS_TOKEN || !INSTAGRAM_USER_ID) {
+          throw new Error('Instagram credentials not found. Please check your .env file.');
+        }
+
+        const apiUrl = `https://graph.instagram.com/${INSTAGRAM_USER_ID}/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink&access_token=${INSTAGRAM_ACCESS_TOKEN}&limit=3`;
+
+        const response = await fetch(apiUrl);
+
+        if (response.ok) {
+          const data = await response.json();
+          
+          if (data.data && data.data.length > 0) {
+            const formattedPosts = data.data.map((post) => {
+              const imageUrl = post.media_type === 'VIDEO' 
+                ? (post.thumbnail_url || post.media_url) 
+                : post.media_url;
+              
+              return {
+                id: post.id,
+                caption: post.caption || 'Check out our latest work!',
+                media_url: imageUrl,
+                video_url: post.media_type === 'VIDEO' ? post.media_url : null,
+                media_type: post.media_type || 'IMAGE',
+                permalink: post.permalink,
+                thumbnail_url: post.thumbnail_url || post.media_url,
+                is_video: post.media_type === 'VIDEO'
+              };
+            });
+            setPosts(formattedPosts);
+            setError(null);
+            return;
+          } else {
+            throw new Error('No posts found in Instagram response');
+          }
+        } else {
+          const errorText = await response.text();
+          throw new Error(`Instagram API failed: ${response.status} - ${errorText}`);
+        }
+        
+      } catch (err) {
+        setError(`Unable to fetch Instagram posts: ${err.message}`);
+        setPosts([
+          {
+            id: 'error1',
+            caption: 'Unable to load Instagram posts. Please visit our Instagram directly!',
+            media_url: 'https://via.placeholder.com/400x400/008080/ffffff?text=Instagram+Unavailable',
+            media_type: 'IMAGE',
+            permalink: `https://www.instagram.com/fluorescentlandscapes/`
+          },
+          {
+            id: 'error2',
+            caption: 'Check out our latest work on Instagram!',
+            media_url: 'https://via.placeholder.com/400x400/008080/ffffff?text=Visit+Instagram',
+            media_type: 'IMAGE',
+            permalink: `https://www.instagram.com/fluorescentlandscapes/`
+          },
+          {
+            id: 'error3',
+            caption: 'Follow us for daily updates!',
+            media_url: 'https://via.placeholder.com/400x400/008080/ffffff?text=Follow+Us',
+            media_type: 'IMAGE',
+            permalink: `https://www.instagram.com/fluorescentlandscapes/`
+          }
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchInstagramPosts();
   }, []);
-
-  const fetchInstagramPosts = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-
-      const INSTAGRAM_USER_ID = process.env.REACT_APP_INSTAGRAM_USER_ID;
-
-      if (!INSTAGRAM_ACCESS_TOKEN || !INSTAGRAM_USER_ID) {
-        throw new Error('Instagram credentials not found. Please check your .env file.');
-      }
-
-      const apiUrl = `https://graph.instagram.com/${INSTAGRAM_USER_ID}/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink&access_token=${INSTAGRAM_ACCESS_TOKEN}&limit=3`;
-
-      const response = await fetch(apiUrl);
-
-      if (response.ok) {
-        const data = await response.json();
-        
-        if (data.data && data.data.length > 0) {
-          const formattedPosts = data.data.map((post) => {
-            const imageUrl = post.media_type === 'VIDEO' 
-              ? (post.thumbnail_url || post.media_url) 
-              : post.media_url;
-            
-            return {
-              id: post.id,
-              caption: post.caption || 'Check out our latest work!',
-              media_url: imageUrl,
-              video_url: post.media_type === 'VIDEO' ? post.media_url : null,
-              media_type: post.media_type || 'IMAGE',
-              permalink: post.permalink,
-              thumbnail_url: post.thumbnail_url || post.media_url,
-              is_video: post.media_type === 'VIDEO'
-            };
-          });
-          setPosts(formattedPosts);
-          setError(null);
-          return;
-        } else {
-          throw new Error('No posts found in Instagram response');
-        }
-      } else {
-        const errorText = await response.text();
-        throw new Error(`Instagram API failed: ${response.status} - ${errorText}`);
-      }
-      
-    } catch (err) {
-      setError(`Unable to fetch Instagram posts: ${err.message}`);
-      setPosts([
-        {
-          id: 'error1',
-          caption: 'Unable to load Instagram posts. Please visit our Instagram directly!',
-          media_url: 'https://via.placeholder.com/400x400/008080/ffffff?text=Instagram+Unavailable',
-          media_type: 'IMAGE',
-          permalink: `https://www.instagram.com/fluorescentlandscapes/`
-        },
-        {
-          id: 'error2',
-          caption: 'Check out our latest work on Instagram!',
-          media_url: 'https://via.placeholder.com/400x400/008080/ffffff?text=Visit+Instagram',
-          media_type: 'IMAGE',
-          permalink: `https://www.instagram.com/fluorescentlandscapes/`
-        },
-        {
-          id: 'error3',
-          caption: 'Follow us for daily updates!',
-          media_url: 'https://via.placeholder.com/400x400/008080/ffffff?text=Follow+Us',
-          media_type: 'IMAGE',
-          permalink: `https://www.instagram.com/fluorescentlandscapes/`
-        }
-      ]);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const formatCaption = (caption) => {
     if (!caption) return 'Check out our latest work!';

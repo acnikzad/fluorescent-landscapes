@@ -21,6 +21,12 @@
   --accent-hover: #B34A00;     /* Darker burnt orange for hover states */
   --accent-light: #FFE6CC;     /* Light burnt orange for subtle accents */
   
+  /* Blue Accent */
+  --accent-blue: #00d4ff;
+  --accent-blue-dark: #0099cc;
+  --accent-blue-light: #33ddff;
+  --accent-blue-transparent: rgba(0, 212, 255, 0.8);
+  
   /* Shadows */
   --shadow-light: rgba(0, 128, 128, 0.1);
   --shadow-medium: rgba(0, 128, 128, 0.2);
@@ -29,7 +35,7 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.6;
   color: var(--primary-variant);
   overflow-x: hidden;
@@ -109,6 +115,7 @@ html {
 .section-title {
   font-size: 2.5rem;
   font-weight: 700;
+  font-family: 'Georgia', serif;
   color: var(--primary);
   margin-bottom: 1rem;
   text-shadow: 0 0 15px var(--shadow-light);
@@ -116,6 +123,7 @@ html {
 
 .section-subtitle {
   font-size: 1.1rem;
+  font-family: 'Inter', sans-serif;
   color: var(--primary-variant);
   max-width: 600px;
   margin: 0 auto;
@@ -132,7 +140,34 @@ html {
     font-size: 2rem;
   }
   
+  .section-subtitle {
+    font-size: 1rem;
+  }
+  
   .container {
     padding: 0 1rem;
+  }
+  
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+  
+  .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .section-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .container {
+    padding: 0 0.8rem;
   }
 }
